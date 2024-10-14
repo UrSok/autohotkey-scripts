@@ -23,8 +23,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Ahk2 to exe
-        uses: nekocodeX/GitHub-Action-Ahk2Exe@v1.1.0
+      - name: Ahk script to exe
+        uses: nukdokplex/autohotkey-build@v1
         with: 
           in: darks-souls-readonly-save.ahk2
           out: Dark Souls Remastered read-only save
