@@ -1,5 +1,5 @@
 #SingleInstance Force
-#HotIf WinActive("DARK SOULS™: REMASTERED",)
+#HotIf WinActive("DARK SOULS™: REMASTERED")
 
 IsFileValid := 0
 Speaker := ComObject("SAPI.SpVoice")
