@@ -8,12 +8,12 @@ SaveFile := ""
 ; IsFileValid := 1
 ; SaveFile := "C:\Users\marda\OneDrive\Documents\NBGI\DARK SOULS REMASTERED\110507413\DRAKS0005.sl2"
 
-loop {
+while IsFileValid = 0  {
     SaveFile := FileSelect(1, , "Select Dark Souls Save File", "Dark Souls Save File (*.sl2)")
     IsFileValid := (SaveFile != "" AND InStr(SaveFile, ".sl2", 1, StrLen(SaveFile) - 5,) > 0)
     if IsFileValid = 0
         MsgBox("Please select a Dark Souls Save File!", MessageBoxTitle, 48)
-} until IsFileValid = 1
+}
 
 F1:: {
     if (IsFileValid = 0) {
