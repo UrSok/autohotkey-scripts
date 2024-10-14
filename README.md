@@ -8,5 +8,5 @@ Make sure that you use the default key mapping for menu navigation, otherwise yo
 ### Hotkeys
 | Hotkey  | Description |
 | ------------- | ------------- |
-| F1 | Change the read-only state of the save file. If the state is changed, a soud is going to be heard. |
-| F3 | **Requires the save file to be in read-only state.** Reloads the save. Make sure no menu are open while doing that.  |
+| F1 | Change the read-only state of the save file. If the state is changed, a sound is going to be heard. |
+| F3 | **Requires the save file to be in read-only state. Make sure no menu are open while using this hotkey.** Reloads the save. |
