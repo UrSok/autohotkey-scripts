@@ -27,7 +27,7 @@ jobs:
         with: 
           version: v2.0.18
           in: darks-souls-readonly-save.ahk2
-          x64_suffix: false
+          x64_suffix: ''
           compression: upx
           
       - name: Release
