@@ -27,13 +27,13 @@ jobs:
         with: 
           version: v2.0.18
           in: darks-souls-readonly-save.ahk2
-          out: Dark Souls Remastered read-only save
+          out: 'Dark Souls Remastered read-only save'
           
       - name: Release
         uses: actions/upload-artifact@master
         with:
-          name: Dark Souls Remastered read-only save
-          path: Dark Souls Remastered read-only save.exe
+          name: 'Dark Souls Remastered read-only save'
+          path: 'Dark Souls Remastered read-only save.exe'
 
       # - name: Publish
       #   uses: elgohr/Github-Release-Action@v5
