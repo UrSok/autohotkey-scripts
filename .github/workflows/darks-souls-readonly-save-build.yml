@@ -34,7 +34,7 @@ jobs:
         uses: actions/upload-artifact@master
         with:
           name: 'Dark Souls Remastered read-only save'
-          path: 'darks-souls-readonly-save.exe'
+          path: 'build\darks-souls-readonly-save.exe'
 
       # - name: Publish
       #   uses: elgohr/Github-Release-Action@v5
