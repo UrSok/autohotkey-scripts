@@ -8,6 +8,7 @@ SaveFile := ""
 ; Uncomment to skip the save file selection
 ; SaveFile := "C:\Users\marda\OneDrive\Documents\NBGI\DARK SOULS REMASTERED\110507413\DRAKS0005.sl2"
 
+MsgBox("See https://github.com/UrSok/autohotkey-scripts?tab=readme-ov-file#dark-souls-remastered-read-only-save to understand how to use.", MessageBoxTitle, 48)
 SelectSave()
 
 F1:: {
