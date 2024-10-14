@@ -31,11 +31,11 @@ jobs:
           x64_suffix: ''
           compression: upx
           
-      - name: Release
-        uses: actions/upload-artifact@master
-        with:
-          name: 'Dark Souls Remastered read-only save.exe'
-          path: 'build\darks-souls-readonly-save.exe'
+      # - name: Release
+      #   uses: actions/upload-artifact@master
+      #   with:
+      #     name: 'Dark Souls Remastered read-only save.exe'
+      #     path: 'build\darks-souls-readonly-save.exe'
 
       - name: Publish release
         uses: ncipollo/release-action@v1
@@ -43,5 +43,8 @@ jobs:
           name: Dark Souls Remastered read-only save ${{ github.sha }}
           tag: DarkSoulsReadOnlySave${{ github.sha }}
           draft: false
+          replacesArtifacts: true
+          prerelease: true
+          allowUpdates: true
           artifacts: 'build\darks-souls-readonly-save.exe'
           
