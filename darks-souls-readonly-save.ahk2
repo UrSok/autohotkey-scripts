@@ -1,16 +1,18 @@
 #SingleInstance Force
+#HotIf WinActive("DARK SOULS™: REMASTERED",)
 
 IsFileValid := 0
 Speaker := ComObject("SAPI.SpVoice")
 MessageBoxTitle := "Dark Souls Read Only Save Macro"
 SaveFile := ""
 
+; Uncomment to skip the save file selection
 ; IsFileValid := 1
 ; SaveFile := "C:\Users\marda\OneDrive\Documents\NBGI\DARK SOULS REMASTERED\110507413\DRAKS0005.sl2"
 
 while IsFileValid = 0  {
     SaveFile := FileSelect(1, , "Select Dark Souls Save File", "Dark Souls Save File (*.sl2)")
-    IsFileValid := (SaveFile != "" AND InStr(SaveFile, ".sl2", 1, StrLen(SaveFile) - 5,) > 0)
+    IsFileValid := InStr(SaveFile, ".sl2", 1, StrLen(SaveFile) - 5,) > 0
     if IsFileValid = 0
         MsgBox("Please select a Dark Souls Save File!", MessageBoxTitle, 48)
 }
@@ -51,16 +53,20 @@ F2:: {
         return
     }
 
-    SendMultipleKeysWithDelay("{ESC};{Left};{E};{Up};{E};{Left};{E}", 200)
+    SetKeyDelay(200)
+    SendEvent("{ESC}{Left}{E}{Up}{E}{Left}{E}")
+    ; SendMultipleKeysWithDelay("{ESC};{Left};{E};{Up};{E};{Left};{E}", 200)
     FileSetAttrib("-R", SaveFile)
     Sleep(3000)
-    SendMultipleKeysWithDelay("{E};{E};{E};{E};{E};{E};{E}", 500)
+    SetKeyDelay(500)
+    SendEvent("{E}{E}{E}{E}{E}{E}{E}")
+    ; SendMultipleKeysWithDelay("{E};{E};{E};{E};{E};{E};{E}", 500)
     FileSetAttrib("+R", SaveFile)
 }
 
-SendMultipleKeysWithDelay(keys, delay) {
-    loop parse, keys, ";" {
-        SendInput(A_LoopField)
-        Sleep(delay)
-    }
-}
+; SendMultipleKeysWithDelay(keys, delay) {
+;     loop parse, keys, ";" {
+;         SendInput(A_LoopField)
+;         Sleep(delay)
+;     }
+; }
