@@ -8,7 +8,7 @@ SaveFile := ""
 ; Uncomment to skip the save file selection
 ; SaveFile := "C:\Users\marda\OneDrive\Documents\NBGI\DARK SOULS REMASTERED\110507413\DRAKS0005.sl2"
 
-MsgBox("See https://github.com/UrSok/autohotkey-scripts?tab=readme-ov-file#dark-souls-remastered-read-only-save to understand how to use.", MessageBoxTitle, 48)
+; MsgBox("See https://github.com/UrSok/autohotkey-scripts?tab=readme-ov-file#dark-souls-remastered-read-only-save to understand how to use.", MessageBoxTitle, 48)
 SelectSave()
 
 F1:: {
@@ -42,8 +42,9 @@ F3:: {
     SetKeyDelay(200)
     SendEvent("{ESC}{Left}{E}{Up}{E}{Left}{E}")
     ; SendMultipleKeysWithDelay("{ESC};{Left};{E};{Up};{E};{Left};{E}", 200)
-    FileSetAttrib("-R", SaveFile)
     Sleep(3000)
+    FileSetAttrib("-R", SaveFile)
+    Sleep(500)
     SetKeyDelay(500)
     SendEvent("{E}{E}{E}{E}{E}{E}{E}")
     ; SendMultipleKeysWithDelay("{E};{E};{E};{E};{E};{E};{E}", 500)
