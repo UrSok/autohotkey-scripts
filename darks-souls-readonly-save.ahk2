@@ -1,0 +1,66 @@
+#SingleInstance Force
+
+IsFileValid := 0
+Speaker := ComObject("SAPI.SpVoice")
+MessageBoxTitle := "Dark Souls Read Only Save Macro"
+SaveFile := ""
+
+; IsFileValid := 1
+; SaveFile := "C:\Users\marda\OneDrive\Documents\NBGI\DARK SOULS REMASTERED\110507413\DRAKS0005.sl2"
+
+loop {
+    SaveFile := FileSelect(1, , "Select Dark Souls Save File", "Dark Souls Save File (*.sl2)")
+    IsFileValid := (SaveFile != "" AND InStr(SaveFile, ".sl2", 1, StrLen(SaveFile) - 5,) > 0)
+    if IsFileValid = 0
+        MsgBox("Please select a Dark Souls Save File!", MessageBoxTitle, 48)
+} until IsFileValid = 1
+
+F1:: {
+    if (IsFileValid = 0) {
+        return
+    }
+
+    if !FileExist(SaveFile) {
+        MsgBox("You save file is no longer available at '" . SaveFile . "'!", MessageBoxTitle, 16)
+        return
+    }
+
+    FileAttributes := FileGetAttrib(SaveFile)
+    if !InStr(FileAttributes, "R") {
+        FileSetAttrib("+R", SaveFile)
+        Speaker.Speak("Read-only enabled")
+    } else {
+        FileSetAttrib("-R", SaveFile)
+        Speaker.Speak("Read-only disabled")
+    }
+}
+
+F2:: {
+    if (IsFileValid = 0) {
+        return
+    }
+
+    if !FileExist(SaveFile) {
+        MsgBox("You save file is no longer available at '" . SaveFile . "'!", MessageBoxTitle, 16)
+        return
+    }
+
+    FileAttributes := FileGetAttrib(SaveFile)
+    if !InStr(FileAttributes, "R") {
+        Speaker.Speak("Read-only is not enabled")
+        return
+    }
+
+    SendMultipleKeysWithDelay("{ESC};{Left};{E};{Up};{E};{Left};{E}", 200)
+    FileSetAttrib("-R", SaveFile)
+    Sleep(3000)
+    SendMultipleKeysWithDelay("{E};{E};{E};{E};{E};{E};{E}", 500)
+    FileSetAttrib("+R", SaveFile)
+}
+
+SendMultipleKeysWithDelay(keys, delay) {
+    loop parse, keys, ";" {
+        SendInput(A_LoopField)
+        Sleep(delay)
+    }
+}
