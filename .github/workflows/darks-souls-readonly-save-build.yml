@@ -27,12 +27,14 @@ jobs:
         with: 
           version: v2.0.18
           in: darks-souls-readonly-save.ahk2
+          x64_suffix: false
           
       - name: Release
         uses: actions/upload-artifact@master
         with:
           name: 'Dark Souls Remastered read-only save'
           path: 'darks-souls-readonly-save.exe'
+          compression: upx
 
       # - name: Publish
       #   uses: elgohr/Github-Release-Action@v5
