@@ -41,7 +41,7 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           name: Dark Souls Remastered read-only save ${{ github.sha }}
-          tag: DarkSoulsReadOnlySave
+          tag: DarkSoulsReadOnlySave${{ github.sha }}
           draft: false
           artifacts: 'build\darks-souls-readonly-save.exe'
           
