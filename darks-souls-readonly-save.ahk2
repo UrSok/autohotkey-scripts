@@ -1,29 +1,18 @@
 #SingleInstance Force
 #HotIf WinActive("DARK SOULS™: REMASTERED")
 
-IsFileValid := 0
 Speaker := ComObject("SAPI.SpVoice")
 MessageBoxTitle := "Dark Souls Read Only Save Macro"
 SaveFile := ""
 
 ; Uncomment to skip the save file selection
-; IsFileValid := 1
 ; SaveFile := "C:\Users\marda\OneDrive\Documents\NBGI\DARK SOULS REMASTERED\110507413\DRAKS0005.sl2"
 
-while IsFileValid = 0  {
-    SaveFile := FileSelect(1, , "Select Dark Souls Save File", "Dark Souls Save File (*.sl2)")
-    IsFileValid := InStr(SaveFile, ".sl2", 1, StrLen(SaveFile) - 5,) > 0
-    if IsFileValid = 0
-        MsgBox("Please select a Dark Souls Save File!", MessageBoxTitle, 48)
-}
+SelectSave()
 
 F1:: {
-    if (IsFileValid = 0) {
-        return
-    }
-
-    if !FileExist(SaveFile) {
-        MsgBox("You save file is no longer available at '" . SaveFile . "'!", MessageBoxTitle, 16)
+    if !IsSaveValid() {
+        ExecuteFileNotValidFlowInMacro() 
         return
     }
 
@@ -37,13 +26,9 @@ F1:: {
     }
 }
 
-F2:: {
-    if (IsFileValid = 0) {
-        return
-    }
-
-    if !FileExist(SaveFile) {
-        MsgBox("You save file is no longer available at '" . SaveFile . "'!", MessageBoxTitle, 16)
+F3:: {
+    if !IsSaveValid() {
+        ExecuteFileNotValidFlowInMacro() 
         return
     }
 
@@ -70,3 +55,21 @@ F2:: {
 ;         Sleep(delay)
 ;     }
 ; }
+
+IsSaveValid() {
+    return SaveFile != "" AND FileExist(SaveFile)
+}
+
+SelectSave() {
+    if IsSaveValid()
+        return
+
+    SaveFileLocal := FileSelect(1, , "Select Dark Souls Save File", "Dark Souls Save File (*.sl2)")
+    if InStr(SaveFileLocal, ".sl2", 1, StrLen(SaveFileLocal) - 5) > 0
+        global SaveFile := SaveFileLocal
+}
+
+ExecuteFileNotValidFlowInMacro() {
+    MsgBox("No save file found. Please select one and then re-use the macro!", MessageBoxTitle, 16)
+    SelectSave()
+}
