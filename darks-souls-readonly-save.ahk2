@@ -1,15 +1,25 @@
 #SingleInstance Force
-#HotIf WinActive("DARK SOULS™: REMASTERED")
+; #HotIf WinActive("DARK SOULS™: REMASTERED")
 
+ReadOnlyGui := Gui("-Caption +AlwaysOnTop -Border +Disabled")
 Speaker := ComObject("SAPI.SpVoice")
 MessageBoxTitle := "Dark Souls Read Only Save Macro"
 SaveFile := ""
 
 ; Uncomment to skip the save file selection
-; SaveFile := "C:\Users\marda\OneDrive\Documents\NBGI\DARK SOULS REMASTERED\110507413\DRAKS0005.sl2"
+SaveFile := "C:\Users\marda\OneDrive\Documents\NBGI\DARK SOULS REMASTERED\110507413\DRAKS0005.sl2"
 
 ; MsgBox("See https://github.com/UrSok/autohotkey-scripts?tab=readme-ov-file#dark-souls-remastered-read-only-save to understand how to use.", MessageBoxTitle, 48)
 SelectSave()
+
+ReadOnlyGui.AddText("cWhite", "Read-Only ON")
+ReadOnlyGui.BackColor := "Black"
+ReadOnlyGui.Show("AutoSize X10 Y10 NoActivate")
+; Gui, % CLICKTHROUGH := "+E0x20"
+; Gui, Color, White
+; Gui, Add, Picture,, %A_ScriptDir%\Reminder.png
+; Gui, Show, x200 y0 NoActivate
+; WinSet, TransColor, White
 
 F1:: {
     if !IsSaveValid() {
